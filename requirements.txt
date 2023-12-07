@@ -6,7 +6,6 @@ pydeck
 streamlit
 numpy
 opencv-python
-matplotlib
 os
 ultralytics
 torch
