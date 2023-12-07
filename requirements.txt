@@ -6,7 +6,6 @@ pydeck
 streamlit
 numpy
 opencv-python-headless
-opencv-python
 ultralytics
 torch
 Pillow
