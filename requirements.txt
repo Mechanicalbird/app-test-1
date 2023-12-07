@@ -5,7 +5,7 @@ pandas
 pydeck
 streamlit
 numpy
-opencv-python
+opencv-python-headless
 ultralytics
 torch
 Pillow
