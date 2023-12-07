@@ -11,3 +11,4 @@ torch
 Pillow
 python-math
 TIME-python
+streamlit webrtc == 0.34.
