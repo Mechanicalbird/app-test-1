@@ -9,5 +9,5 @@ opencv-python
 ultralytics
 torch
 Pillow
-math
-time
+python-math
+TIME-python
