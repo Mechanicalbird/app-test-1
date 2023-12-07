@@ -8,7 +8,6 @@ numpy
 opencv-python
 ultralytics
 torch
-random
 PIL
 math
 time
