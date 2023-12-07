@@ -6,7 +6,6 @@ pydeck
 streamlit
 numpy
 opencv-python
-os
 ultralytics
 torch
 random
