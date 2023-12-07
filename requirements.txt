@@ -8,5 +8,6 @@ numpy
 opencv-python
 ultralytics
 torch
+Pillow
 math
 time
