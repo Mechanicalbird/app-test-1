@@ -15,7 +15,7 @@ import time
 
 RTC_CONFIGURATION = RTCConfiguration({"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]})
                                                                                     
-def size_messurment_func(counter,calculation_frames,frame,name,input_value,width,height,fps,User_hight,model,model_pose,width_mes_1,width_mes_2,width_mes_3,width_mes_4,inseem_mes_5,inseem_mes_6,arm_mes_7,arm_mes_8,length_man_9,cm_value_factor_10,User_hight_array_11):
+def size_messurment_func(counter,calculation_frames,frame,width,height,model,model_pose,width_mes_1,width_mes_2,width_mes_3,width_mes_4,inseem_mes_5,inseem_mes_6,arm_mes_7,arm_mes_8,length_man_9,cm_value_factor_10,User_hight_array_11):
     data_arr_names = ['sholder_level','Chest','Waist','Hipps','Inseem_1','Inseem_2','arm_1','arm_2','human_length','cm_value_factor_10','User_hight']
     
     if counter % calculation_frames == 0:
@@ -470,6 +470,11 @@ def size_messurment_func(counter,calculation_frames,frame,name,input_value,width
 
 
 class Faceemotion(VideoTransformerBase):
+    def __init__(self):
+        self.right_counter = 0
+        #self.model = YOLO("yolov8m-seg.pt")
+        #self.model_pose = YOLO("yolov8m-pose.pt")
+      
     def transform(self, frame):
         img = frame.to_ndarray(format="bgr24")
 
@@ -485,8 +490,41 @@ class Faceemotion(VideoTransformerBase):
         model = YOLO("yolov8m-seg.pt")
     
         model_pose = YOLO("yolov8m-pose.pt")
-    
 
+        # Record the values:
+        # Mes_1 : sholder level
+        width_mes_1_front = []
+        # Mes_2 : Chest
+        width_mes_2_front = []
+        # Mes_3 : Waist 
+        width_mes_3_front = []
+        # Mes_4 : Hipps
+        width_mes_4_front = []
+        # Mes_5 : Inseem_1
+        inseem_mes_5_front = []
+        # Mes_6 : Inseem_2
+        inseem_mes_6_front = []
+        # Mes_7 : arm_1
+        arm_mes_7_front = []
+        # Mes_8 : arm_2
+        arm_mes_8_front = []
+        # human _ length
+        length_man_9_front = []
+        #cm_value_factor
+        cm_value_factor_10_front = []
+        # user hight array
+        User_hight_array_11_front = []
+
+        counter = 0
+        calculation_frames = 2
+    
+        start_time = time.time()
+
+        ret, frame = cap.read()
+  
+        frame_out,width_mes_1_front,width_mes_2_front,width_mes_3_front,width_mes_4_front,inseem_mes_5_front,inseem_mes_6_front,arm_mes_7_front,arm_mes_8_front,length_man_9_front,cm_value_factor_10_front,User_hight_array_11_front = size_messurment_func(counter,calculation_frames,frame,width,height,model,model_pose,width_mes_1_front,width_mes_2_front,width_mes_3_front,width_mes_4_front,inseem_mes_5_front,inseem_mes_6_front,arm_mes_7_front,arm_mes_8_front,length_man_9_front,cm_value_factor_10_front,User_hight_array_11_front)
+    
+        #img = frame_out
         return img
 
 def main():
