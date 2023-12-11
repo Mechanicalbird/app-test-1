@@ -1,11 +1,11 @@
 pip == 23.3.1
 altair
-numpy
+numpy~=1.21.2
 pandas
 pydeck
-streamlit
+streamlit~=0.87.0
 numpy
-opencv-python-headless
+opencv-contrib-python-headless
 ultralytics
 torch
 Pillow
