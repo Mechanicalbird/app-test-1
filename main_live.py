@@ -8,7 +8,13 @@ RTC_CONFIGURATION = RTCConfiguration({"iceServers": [{"urls": ["stun:stun.l.goog
 class Faceemotion(VideoTransformerBase):
     def transform(self, frame):
         img = frame.to_ndarray(format="bgr24")
-
+        
+        frame_rgb_after = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        #rgb_after = Image.fromarray(frame_rgb_after)
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        input_text_instruction = "--- SIDE ---"
+        cv2.putText(frame_rgb_after,input_text_instruction,(int(width/4), int(height/2)), font,1,(255,255,255),2)
+        img = cv2.cvtColor(frame_rgb_after, cv2.COLOR_BGR2RGB)
         return img
 
 def main():
