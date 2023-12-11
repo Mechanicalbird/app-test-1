@@ -1,32 +1,26 @@
+import numpy as np
+import cv2
 import streamlit as st
+from tensorflow import keras
+from keras.models import model_from_json
+from keras.preprocessing.image import img_to_array
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
 
-class OpenCVVideoTransformer(VideoTransformerBase):
-    def transform(self, frame):
-        processed_frame = self.process_frame(frame)
-        return processed_frame
 
-    def process_frame(self, frame):
-        # Add your OpenCV processing logic here
-        # For example:
-        # processed_frame = Perform_OpenCV_Operations(frame.to_ndarray())
-        processed_frame = frame.to_ndarray()  # Placeholder for actual processing
-        return processed_frame
+class VideoTransformer(VideoTransformerBase):
+    def transform(self, frame):
+        img = frame.to_ndarray(format="bgr24")
+        return img
 
 def main():
-    st.title("Streamlit WebRTC + OpenCV Example")
-    st.write("Live Video Stream")
+    # Face Analysis Application #
+    st.title("Real Time Face Application")
+    st.header("Webcam Live Feed")
+    
+    st.write("Click on start to use webcam and detect your face emotion")
+    
+    webrtc_streamer(key="example", video_transformer_factory=VideoTransformer)
 
-    webrtc_ctx = webrtc_streamer(
-        key="example-opencv",
-        video_transformer_factory=OpenCVVideoTransformer,
-        async_transform=True,
-    )
-
-    if webrtc_ctx.video_transformer:
-        st.write("Processed Video Stream")
-        processed_frame = webrtc_ctx.video_transformer.process_frame(webrtc_ctx.video_frame)
-        st.image(processed_frame)
-
+    
 if __name__ == "__main__":
     main()
