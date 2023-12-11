@@ -472,8 +472,8 @@ def size_messurment_func(counter,calculation_frames,frame,width,height,model,mod
 class Faceemotion(VideoTransformerBase):
     def __init__(self):
         self.right_counter = 0
-        #self.model = YOLO("yolov8m-seg.pt")
-        #self.model_pose = YOLO("yolov8m-pose.pt")
+        #self.model = YOLO("yolov8s-seg.pt")
+        #self.model_pose = YOLO("yolov8s-pose.pt")
       
     def transform(self, frame):
         img = frame.to_ndarray(format="bgr24")
