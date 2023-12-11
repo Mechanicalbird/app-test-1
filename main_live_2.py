@@ -473,14 +473,32 @@ class Faceemotion(VideoTransformerBase):
     def transform(self, frame):
         img = frame.to_ndarray(format="bgr24")
 
+        cap = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            
+        width  = int(cap.get(3))
+        height = int(cap.get(4)) 
+      
+        User_hight = input_value
+        if User_hight <=0:
+            User_hight =10
+        
+        model = YOLO("yolov8m-seg.pt")
+    
+        model_pose = YOLO("yolov8m-pose.pt")
+    
+
         return img
 
 def main():
-    # Face Analysis Application #
-    st.title("Real Time sizing Application")
+    ########################## USER INPUTS #############################
+    st.title("The Size")
     
-    st.header("Webcam Live Feed")
-    st.write("Click on start to use webcam and detect your face emotion")
+    name = st.text_input('Enter your name: ')
+    st.write('Your name is ', name)
+
+    input_value = st.number_input("Insert your hight:")
+    st.write("You entered:", input_value)
+  
     webrtc_streamer(key="example", mode=WebRtcMode.SENDRECV, rtc_configuration=RTC_CONFIGURATION,
                         video_processor_factory=Faceemotion)
 
