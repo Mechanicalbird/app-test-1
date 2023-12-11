@@ -525,7 +525,7 @@ class Faceemotion(VideoTransformerBase):
         frame_out,width_mes_1_front,width_mes_2_front,width_mes_3_front,width_mes_4_front,inseem_mes_5_front,inseem_mes_6_front,arm_mes_7_front,arm_mes_8_front,length_man_9_front,cm_value_factor_10_front,User_hight_array_11_front = size_messurment_func(counter,calculation_frames,frame,width,height,model,model_pose,width_mes_1_front,width_mes_2_front,width_mes_3_front,width_mes_4_front,inseem_mes_5_front,inseem_mes_6_front,arm_mes_7_front,arm_mes_8_front,length_man_9_front,cm_value_factor_10_front,User_hight_array_11_front)
     
         #img = frame_out
-        frame_rgb = cv2.cvtColor(frame_out, cv2.COLOR_BGR2RGB)
+        frame_rgb = cv2.cvtColor(frame_out, cv2.COLOR_RGB2BGR)
         img = Image.fromarray(frame_rgb)
         return img
 
