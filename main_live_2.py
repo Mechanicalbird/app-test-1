@@ -526,8 +526,8 @@ class Faceemotion(VideoTransformerBase):
     
         #img = frame_out
         frame_rgb = cv2.cvtColor(frame_out, cv2.COLOR_BGR2RGB)
-        img_pil = Image.fromarray(frame_rgb)
-        return img_pil
+        img = Image.fromarray(frame_rgb)
+        return img
 
 def main():
     ########################## USER INPUTS #############################
